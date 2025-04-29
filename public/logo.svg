@@ -1,0 +1,5 @@
+<svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20 5L35 15V25L20 35L5 25V15L20 5Z" fill="#0066FF"/>
+  <path d="M20 10L30 17.5V22.5L20 30L10 22.5V17.5L20 10Z" fill="white"/>
+  <text x="45" y="25" font-family="Arial" font-size="18" font-weight="bold" fill="#0066FF">Apollo 247</text>
+</svg> 

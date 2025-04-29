@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Apollo 247 Clone
+
+This is a clone of the Apollo 247 doctor listing page, built with Next.js, MongoDB, and TypeScript.
+
+## Features
+
+- Doctor listing with filters
+- Pagination
+- Responsive design
+- SEO optimization
+- MongoDB integration
+
+## Prerequisites
+
+- Node.js 18+ and npm
+- MongoDB (local or Atlas)
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd apollo-clone
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Create a `.env` file in the root directory with the following content:
+
+```
+MONGODB_URI=mongodb://localhost:27017/apollo-clone
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
+```
+
+4. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+6. Seed the database with sample data:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+http://localhost:3000/api/seed
+```
 
-## Learn More
+## How to Add a New Doctor
 
-To learn more about Next.js, take a look at the following resources:
+You already have an API endpoint for adding a doctor:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**POST** `/api/doctors`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Example using `curl`:
 
-## Deploy on Vercel
+```bash
+curl -X POST http://localhost:3000/api/doctors \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Dr. Jane Doe",
+    "specialization": "General Physician",
+    "experience": 12,
+    "languages": ["English", "Hindi"],
+    "consultationFee": 700,
+    "rating": 4.9,
+    "reviewCount": 50,
+    "imageUrl": "https://randomuser.me/api/portraits/women/10.jpg",
+    "gender": "Female",
+    "availability": {
+      "today": ["10:00 AM", "11:00 AM"],
+      "tomorrow": ["09:00 AM", "10:00 AM"]
+    },
+    "education": ["MBBS, MD - General Medicine"],
+    "about": "Dr. Jane Doe is a highly experienced general physician.",
+    "location": {
+      "address": "123 Clinic Road",
+      "city": "Delhi",
+      "state": "Delhi",
+      "pincode": "110001"
+    }
+  }'
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+You can also use Postman or any REST client to send a POST request to `/api/doctors` with the above JSON body.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+- `src/app`: Next.js app router pages
+- `src/components`: React components
+- `src/lib`: Utility functions and API clients
+- `src/models`: MongoDB models
+- `src/types`: TypeScript type definitions
+
+## API Endpoints
+
+- `GET /api/doctors`: List doctors with filters and pagination
+- `POST /api/doctors`: Add a new doctor
+- `GET /api/seed`: Seed the database with sample data
+
+## Technologies Used
+
+- Next.js 14
+- TypeScript
+- MongoDB
+- Mongoose
+- Tailwind CSS
+- React Query
+- Axios
+- React Icons
+- Next SEO
+
+## License
+
+MIT
