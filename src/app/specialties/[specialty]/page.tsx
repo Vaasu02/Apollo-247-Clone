@@ -8,7 +8,7 @@ import DoctorFilters from '@/components/doctors/DoctorFilters';
 import DoctorList from '@/components/doctors/DoctorList';
 import Pagination from '@/components/common/Pagination';
 import { getDoctors } from '@/lib/api';
-import { Doctor, DoctorFilters as DoctorFiltersType, DoctorsResponse } from '@/types/doctor';
+import { Doctor, DoctorFilters as DoctorFiltersType } from '@/types/doctor';
 
 export default function SpecialtyPage() {
   const params = useParams();

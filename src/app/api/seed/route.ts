@@ -158,9 +158,10 @@ export async function GET() {
       message: 'Sample doctors added successfully',
       count: doctors.length,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as Error;
     return NextResponse.json(
-      { error: error.message || 'Something went wrong' },
+      { error: err.message || 'Something went wrong' },
       { status: 500 }
     );
   }

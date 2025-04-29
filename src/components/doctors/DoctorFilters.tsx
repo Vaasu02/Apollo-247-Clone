@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { DoctorFilters as DoctorFiltersType } from '@/types/doctor';
 import { FaFilter, FaTimes } from 'react-icons/fa';
 
@@ -8,9 +7,7 @@ interface DoctorFiltersProps {
 }
 
 const DoctorFilters = ({ onFilterChange, activeFilters }: DoctorFiltersProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  
-  const handleFilterChange = (key: keyof DoctorFiltersType, value: any) => {
+  const handleFilterChange = (key: keyof DoctorFiltersType, value: unknown) => {
     onFilterChange({
       ...activeFilters,
       [key]: value,

@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import Doctor from '@/models/Doctor';
 
@@ -18,15 +18,16 @@ function getDbSpecialty(slug: string) {
   return SPECIALTY_MAP[slug] || kebabToTitleCase(slug);
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     await connectDB();
     const body = await request.json();
     const doctor = await Doctor.create(body);
     return NextResponse.json(doctor, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const err = error as Error;
     return NextResponse.json(
-      { error: error.message || 'Something went wrong' },
+      { error: err.message || 'Something went wrong' },
       { status: 500 }
     );
   }
@@ -46,7 +47,7 @@ export async function GET(request: NextRequest) {
     const languages = searchParams.getAll('languages');
     const sortBy = searchParams.get('sortBy') || 'rating';
     
-    const query: any = {};
+    const query: Record<string, unknown> = {};
     
     if (specialization) {
       query.specialization = getDbSpecialty(specialization);
@@ -91,10 +92,11 @@ export async function GET(request: NextRequest) {
         pages,
       },
     });
-  } catch (error: any) {
-    console.error('API Error:', error);
+  } catch (error: unknown) {
+    const err = error as Error;
+    console.error('API Error:', err);
     return NextResponse.json(
-      { error: error.message || 'Something went wrong' },
+      { error: err.message || 'Something went wrong' },
       { status: 500 }
     );
   }
