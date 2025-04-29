@@ -115,6 +115,3 @@ You can also use Postman or any REST client to send a POST request to `/api/doct
 - React Icons
 - Next SEO
 
-## License
-
-MIT
